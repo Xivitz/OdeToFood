@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using OdeToFood.Models;
 
 namespace OdeToFood.Services
 {
@@ -23,6 +24,14 @@ namespace OdeToFood.Services
         public Restaurant Get(int id)
         {
             return _restaurants.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Restaurant Add(Restaurant restaurant)
+        {
+            restaurant.Id = _restaurants.Max(x => x.Id ) + 1;
+            _restaurants.Add(restaurant);
+
+            return restaurant;
         }
 
         List<Restaurant> _restaurants;
